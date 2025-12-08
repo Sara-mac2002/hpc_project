@@ -23,24 +23,24 @@ void matmul(double *A, double *B, double *C, int n, int m, int p) {
                 C[i*p + j] += A[i*m + k] * B[k*p + j];
         }
 }
+//uncomment for omp and hybrid uses only 
+//void matmul_omp(double *A, double *B, double *C, int M, int N, int P) {
 
-void matmul_omp(double *A, double *B, double *C, int M, int N, int P) {
+    // #pragma omp parallel for collapse(2) schedule(static)
+    // for (int i = 0; i < M; i++) {
+    //     for (int j = 0; j < P; j++) {
 
-    #pragma omp parallel for collapse(2) schedule(static)
-    for (int i = 0; i < M; i++) {
-        for (int j = 0; j < P; j++) {
+    //         double sum = 0.0;
 
-            double sum = 0.0;
+    //         #pragma omp simd reduction(+:sum)
+    //         for (int k = 0; k < N; k++) {
+    //             sum += A[i * N + k] * B[k * P + j];
+    //         }
 
-            #pragma omp simd reduction(+:sum)
-            for (int k = 0; k < N; k++) {
-                sum += A[i * N + k] * B[k * P + j];
-            }
-
-            C[i * P + j] = sum;
-        }
-    }
-}
+    //         C[i * P + j] = sum;
+    //     }
+    // }
+//}
 
 
 
