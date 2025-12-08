@@ -1,0 +1,323 @@
+srun: error: slurm-compute-h22b8-u14-svn3: task 15: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u13-svn4: task 13: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u14-svn1: task 14: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u13-svn2: task 12: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u12-svn1: task 10: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u11-svn4: task 9: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u10-svn3: task 7: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u11-svn2: task 8: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u9-svn2: task 4: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u9-svn4: task 5: Exited with exit code 1
+srun: error: slurm-compute-h22b8-u10-svn1: task 6: Exited with exit code 1
+
+==========================================
+ALL 10 SCENARIOS COMPLETED
+Finished: Sat Nov 15 14:34:47 +01 2025
+==========================================
+
+Extracting timing summary...
+
+grep: mpi_all_scenarios_5317299.log: No such file or directory
+Timing summary saved to: timing_summary.txt
+[salma.oumoussa@slurm-compute-h21b5-u6-svn1 mlp_codes]$ clear
+[salma.oumoussa@slurm-compute-h21b5-u6-svn1 mlp_codes]$ bash test_mpi_comparison.sh 
+==========================================
+MPI COMPREHENSIVE TEST - 10 Scenarios
+Job ID: 5317299
+==========================================
+
+Nodes: slurm-compute-h21b5-u6-svn1,slurm-compute-h22b8-u7-svn4,slurm-compute-h22b8-u8-svn1,slurm-compute-h22b8-u8-svn3,slurm-compute-h22b8-u9-svn2,slurm-compute-h22b8-u9-svn4,slurm-compute-h22b8-u10-svn1,slurm-compute-h22b8-u10-svn3,slurm-compute-h22b8-u11-svn2,slurm-compute-h22b8-u11-svn4,slurm-compute-h22b8-u12-svn1,slurm-compute-h22b8-u12-svn3,slurm-compute-h22b8-u13-svn2,slurm-compute-h22b8-u13-svn4,slurm-compute-h22b8-u14-svn1,slurm-compute-h22b8-u14-svn3
+
+=== 4 PROCESSES ===
+[A] 4p/1n INTRA
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 4
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+[B] 4p/4n INTER MAX
+slurm-compute-h22b8-u8-svn1:rank2.mlp: Failed to modify UD QP to INIT on mlx5_0: Operation not permitted
+--------------------------------------------------------------------------
+Open MPI failed an OFI Libfabric library call (fi_endpoint).  This is highly
+unusual; your job may behave unpredictably (and/or abort) after this.
+
+  Local host: slurm-compute-h22b8-u8-svn1
+  Location: mtl_ofi_component.c:513
+  Error: Invalid argument (22)
+--------------------------------------------------------------------------
+slurm-compute-h22b8-u7-svn4:rank1.mlp: Failed to modify UD QP to INIT on mlx5_0: Operation not permitted
+slurm-compute-h22b8-u8-svn3:rank3.mlp: Failed to modify UD QP to INIT on mlx5_0: Operation not permitted
+slurm-compute-h21b5-u6-svn1:rank0.mlp: Failed to modify UD QP to INIT on mlx5_0: Operation not permitted
+Rank 0 can open file_y: data/data_y.txt
+Chargement de 10000 échantillons.
+MPI size: 4 | Batch size: 128 | Activation mode: 1
+Epoch 0 - Loss: 0.631876 (lr=0.010000)
+[slurm-compute-h21b5-u6-svn1:4091409] 3 more processes have sent help message help-mtl-ofi.txt / OFI call fail
+[slurm-compute-h21b5-u6-svn1:4091409] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Epoch 1000 - Loss: 0.284925 (lr=0.010000)
+Epoch 2000 - Loss: 0.275439 (lr=0.010000)
+Epoch 3000 - Loss: 0.270794 (lr=0.010000)
+Epoch 4000 - Loss: 0.268328 (lr=0.010000)
+Weights saved (MPI).
+Execution time: 268.1631 seconds
+
+=== 8 PROCESSES ===
+[C] 8p/1n INTRA
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 8
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+[D] 8p/2n INTER
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 4
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+[E] 8p/4n INTER HIGH
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 2
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+=== 16 PROCESSES ===
+[F] 16p/1n INTRA
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+[G] 16p/2n INTER
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 8
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+[H] 16p/4n INTER
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 4
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+[I] 16p/8n INTER HIGH
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 2
+slots that were requested by the application:
+
+  ./mlp
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+
+[J] 16p/16n INTER MAX
+Rank 0 can open file_y: data/data_y.txt
+Chargement de 10000 échantillons.
+MPI size: 16 | Batch size: 128 | Activation mode: 1
+Epoch 0 - Loss: 0.656590 (lr=0.010000)
+Epoch 1000 - Loss: 0.299533 (lr=0.010000)
+Epoch 2000 - Loss: 0.292148 (lr=0.010000)
+Epoch 3000 - Loss: 0.288979 (lr=0.010000)
+Epoch 4000 - Loss: 0.287253 (lr=0.010000)
+Weights saved (MPI).
+Execution time: 68.2356 seconds
+
+==========================================
+COMPLETE - Sat Nov 15 14:42:02 +01 2025
+==========================================
+[salma.oumoussa@slurm-compute-h21b5-u6-svn1 mlp_codes]$ 
