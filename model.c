@@ -19,9 +19,7 @@ int *y;    // (num_examples)
 
 
 
-double calculate_loss(double *W1, double *b1, double *W2, double *b2, 
-                     int nn_hdim, int activation_mode)
-{
+double calculate_loss(double *W1, double *b1, double *W2, double *b2, int nn_hdim, int activation_mode){
     // Forward pass on entire dataset
     double *z1 = calloc(num_examples * nn_hdim, sizeof(double));
     double *a1 = calloc(num_examples * nn_hdim, sizeof(double));

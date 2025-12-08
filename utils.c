@@ -24,23 +24,23 @@ void matmul(double *A, double *B, double *C, int n, int m, int p) {
         }
 }
 
-// void matmul(double *A, double *B, double *C, int M, int N, int P) {
+void matmul_omp(double *A, double *B, double *C, int M, int N, int P) {
 
-//     #pragma omp parallel for collapse(2) schedule(static)
-//     for (int i = 0; i < M; i++) {
-//         for (int j = 0; j < P; j++) {
+    #pragma omp parallel for collapse(2) schedule(static)
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < P; j++) {
 
-//             double sum = 0.0;
+            double sum = 0.0;
 
-//             #pragma omp simd reduction(+:sum)
-//             for (int k = 0; k < N; k++) {
-//                 sum += A[i * N + k] * B[k * P + j];
-//             }
+            #pragma omp simd reduction(+:sum)
+            for (int k = 0; k < N; k++) {
+                sum += A[i * N + k] * B[k * P + j];
+            }
 
-//             C[i * P + j] = sum;
-//         }
-//     }
-// }
+            C[i * P + j] = sum;
+        }
+    }
+}
 
 
 
@@ -70,17 +70,17 @@ void softmax(double *z, double *probs, int N, int C)
     }
 }
 
-// void softmax(double *Z, double *P, int n, int p) {
-//     for (int i = 0; i < n; i++) {
-//         double sum_exp = 0.0;
-//         for (int j = 0; j < p; j++) {
-//             P[i*p + j] = exp(Z[i*p + j]);
-//             sum_exp += P[i*p + j];
-//         }
-//         for (int j = 0; j < p; j++)
-//             P[i*p + j] /= sum_exp;
-//     }
-// }
+void softmax(double *Z, double *P, int n, int p) {
+    for (int i = 0; i < n; i++) {
+        double sum_exp = 0.0;
+        for (int j = 0; j < p; j++) {
+            P[i*p + j] = exp(Z[i*p + j]);
+            sum_exp += P[i*p + j];
+        }
+        for (int j = 0; j < p; j++)
+            P[i*p + j] /= sum_exp;
+    }
+}
 
 // Compte les lignes dans un fichier (nombre d'échantillons)
 int count_lines(const char *filename) {

@@ -3,6 +3,7 @@
 
 double randn();
 void matmul(double *A, double *B, double *C, int n, int m, int p);
+void matmul_omp(double *A, double *B, double *C, int M, int N, int P);
 void add_bias(double *Z, double *b, int n, int p);
 void softmax(double *Z, double *P, int n, int p);
 int count_lines(const char *filename);
