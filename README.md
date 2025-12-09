@@ -60,8 +60,8 @@ make clean
 make
 
 ## Running Examples
-## Sequential Mode
-## Steps:
+### Sequential Mode
+Steps:
 
 In Makefile, uncomment the sequential configuration
 Build and run:
@@ -75,7 +75,7 @@ Prints loss every 1000 epochs
 Saves weights to output/
 
 
-OpenMP Mode
+### OpenMP Mode
 Steps:
 
 In Makefile, uncomment the OpenMP configuration
@@ -92,7 +92,7 @@ Prints loss every 10 epochs
 Optimal performance: 4-8 threads
 
 
-MPI Mode
+### MPI Mode
 Steps:
 
 In Makefile, uncomment the MPI configuration
@@ -113,7 +113,7 @@ Gradients synchronized via MPI_Allreduce
 Rank 0 saves final weights
 
 
-Hybrid Mode (MPI + OpenMP)
+### Hybrid Mode (MPI + OpenMP)
 Steps:
 
 In Makefile, uncomment the hybrid configuration
