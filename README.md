@@ -66,7 +66,7 @@ Steps:
 In Makefile, uncomment the sequential configuration
 Build and run:
 ```
-bashmake clean && make
+make clean && make
 ./mlp
 ```
 Output:
@@ -81,7 +81,7 @@ Steps:
 In Makefile, uncomment the OpenMP configuration
 Build and run:
 ```
-bashmake clean && make
+make clean && make
 export OMP_NUM_THREADS=8
 ./mlp
 ```
@@ -100,10 +100,10 @@ Build and run:
 
 Single Node (4 processes):
 ```
-bashmake clean && make
+make clean && make
 mpirun -np 4 ./mlp
 Multiple Nodes:
-bashmake clean && make
+make clean && make
 mpirun -np 8 --host node1,node2,node3,node4 ./mlp
 ```
 Features:
@@ -119,7 +119,7 @@ Steps:
 In Makefile, uncomment the hybrid configuration
 Build and run:
 ```
-bashmake clean && make
+make clean && make
 export OMP_NUM_THREADS=4
 mpirun -np 2 ./mlp
 ```
