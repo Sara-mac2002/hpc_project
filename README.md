@@ -65,9 +65,10 @@ make
 
 In Makefile, uncomment the sequential configuration
 Build and run:
-
+```
 bashmake clean && make
 ./mlp
+```
 Output:
 
 Prints loss every 1000 epochs
@@ -79,10 +80,11 @@ Steps:
 
 In Makefile, uncomment the OpenMP configuration
 Build and run:
-
+```
 bashmake clean && make
 export OMP_NUM_THREADS=8
 ./mlp
+```
 Configuration:
 
 Uses task-based parallelization for better load balancing
@@ -97,11 +99,13 @@ In Makefile, uncomment the MPI configuration
 Build and run:
 
 Single Node (4 processes):
+```
 bashmake clean && make
 mpirun -np 4 ./mlp
 Multiple Nodes:
 bashmake clean && make
 mpirun -np 8 --host node1,node2,node3,node4 ./mlp
+```
 Features:
 
 Data automatically partitioned across processes
@@ -114,10 +118,11 @@ Steps:
 
 In Makefile, uncomment the hybrid configuration
 Build and run:
-
+```
 bashmake clean && make
 export OMP_NUM_THREADS=4
 mpirun -np 2 ./mlp
+```
 Configuration:
 
 Combines distributed-memory (MPI) and shared-memory (OpenMP) parallelism
@@ -293,7 +298,7 @@ To verify correctness:
 ```bash
 # Rebuild from scratch
 make clean
-make sequential  # or openmp/mpi/hybrid
+make   # or openmp/mpi/hybrid
 
 # Check compiler
 gcc --version
