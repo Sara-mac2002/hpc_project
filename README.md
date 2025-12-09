@@ -1,7 +1,9 @@
 # MLP Neural Network: Sequential, OpenMP, MPI, and Hybrid Implementations
 
 A high-performance Multi-Layer Perceptron (MLP) implementation in C with four independent parallelization strategies for comparative performance analysis.
+## Authors
 
+**Salma Oumoussa** and **Sara Samouche**  
 ## Overview
 
 This project implements a feedforward neural network with four separate implementations:
@@ -48,71 +50,78 @@ mlp_codes/
 - OpenMPI 4.1.1 or later (for MPI/Hybrid modes)
 - Python 3.x with matplotlib, numpy, sklearn (for visualization)
 
-### Building
-
-The Makefile supports building all four modes with simple targets:
-```bash
-# Sequential (default)
-make sequential
-./mlp
-
-# OpenMP
-make openmp
-OMP_NUM_THREADS=8 ./mlp
-
-# MPI
-make mpi
-mpirun -np 4 ./mlp
-
-# Hybrid (MPI + OpenMP)
-make hybrid
-mpirun -np 2 -x OMP_NUM_THREADS=4 ./mlp
-
-# Build all versions
-make all
-
-# Clean
+Building and Running
+Building the Project
+The Makefile uses a single compilation target. To switch between modes, uncomment the desired configuration in the Makefile.
+bash# Clean previous builds
 make clean
-```
+
+# Build (after uncommenting desired mode in Makefile)
+make
 
 ## Running Examples
+## Sequential Mode
+## Steps:
 
-### Sequential
-```bash
-make sequential
+In Makefile, uncomment the sequential configuration
+Build and run:
+
+bashmake clean && make
 ./mlp
-```
-**Output**: Prints loss every 1000 epochs, saves weights to `output/`
+Output:
 
-### OpenMP
-```bash
-make openmp
+Prints loss every 1000 epochs
+Saves weights to output/
+
+
+OpenMP Mode
+Steps:
+
+In Makefile, uncomment the OpenMP configuration
+Build and run:
+
+bashmake clean && make
 export OMP_NUM_THREADS=8
 ./mlp
-```
-**Notes**: 
-- Uses task-based parallelization for better load balancing
-- Prints loss every 10 epochs
-- Optimal performance: 4-8 threads
+Configuration:
 
-### MPI
-```bash
-make mpi
+Uses task-based parallelization for better load balancing
+Prints loss every 10 epochs
+Optimal performance: 4-8 threads
 
-# Single node (4 processes)
+
+MPI Mode
+Steps:
+
+In Makefile, uncomment the MPI configuration
+Build and run:
+
+Single Node (4 processes):
+bashmake clean && make
 mpirun -np 4 ./mlp
-
-# Multiple nodes
+Multiple Nodes:
+bashmake clean && make
 mpirun -np 8 --host node1,node2,node3,node4 ./mlp
-```
-**Notes**:
-- Data automatically partitioned across processes
-- Gradients synchronized via `MPI_Allreduce`
-- Rank 0 saves final weights
+Features:
 
-### Hybrid
-```bash
-make hybrid
+Data automatically partitioned across processes
+Gradients synchronized via MPI_Allreduce
+Rank 0 saves final weights
+
+
+Hybrid Mode (MPI + OpenMP)
+Steps:
+
+In Makefile, uncomment the hybrid configuration
+Build and run:
+
+bashmake clean && make
+export OMP_NUM_THREADS=4
+mpirun -np 2 ./mlp
+Configuration:
+
+Combines distributed-memory (MPI) and shared-memory (OpenMP) parallelism
+Balance processes and threads based on your hardware
 
 # 2 MPI processes × 4 OpenMP threads = 8 total workers
 mpirun -np 2 -x OMP_NUM_THREADS=4 ./mlp
@@ -262,35 +271,11 @@ Automated testing script for MPI implementation
 
 ## Makefile Targets
 ```bash
-make sequential   # Build sequential version (default)
-make openmp      # Build OpenMP version
-make mpi         # Build MPI version
-make hybrid      # Build hybrid MPI+OpenMP version
-make all         # Build all versions
-make clean       # Remove all compiled files
+make
+./mlp
 ```
 
-## Troubleshooting
 
-### OpenMP not using all threads
-```bash
-# Verify thread count
-echo $OMP_NUM_THREADS
-
-# Set explicitly
-export OMP_NUM_THREADS=8
-export OMP_PROC_BIND=true
-```
-
-### MPI permission errors
-```bash
-# Force TCP transport
-export OMPI_MCA_btl=tcp,self
-mpirun -np 4 ./mlp
-
-# Check MPI installation
-mpicc --version
-which mpirun
 ```
 
 ### Different results between modes
@@ -353,23 +338,10 @@ Visualization outputs:
 - **`decision_boundary.png`**: Classification boundary
 - **`callgraph.png`**: Performance profiling graph
 
-## Performance Expectations
-
-Typical performance on modern hardware (10K samples, 512 neurons, 5K epochs):
-
-| Mode | Configuration | Expected Speedup |
-|------|--------------|------------------|
-| Sequential | 1 thread | 1.0× (baseline) |
-| OpenMP | 4 threads | 2.5-3.5× |
-| OpenMP | 8 threads | 3.5-5.0× |
-| MPI | 4 processes | 3.5-4.0× |
-| MPI | 8 processes | 6.5-8.0× |
-| Hybrid | 2×4 (8 total) | 5.0-7.0× |
+|
 
 
-## Authors
 
-**Salma Oumoussa** and **Sara Samouche**  
 Predoc 2025 Program - High Performance Computing Module  
 Mohammed VI Polytechnic University (UM6P)  
 Supervised by: Professor Imad Kissami
